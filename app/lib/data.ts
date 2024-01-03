@@ -69,6 +69,7 @@ export async function fetchCardData() {
       customerCountPromise,
       invoiceStatusPromise,
     ]);
+    //  Promise.allを使用してすべての Promise を同時に開始する。すべてのデータ要求を同時に行え、つまり並行して開始することができる。すべてのデータ フェッチの実行を同時に開始すると、パフォーマンスの向上につながる。
 
     const numberOfInvoices = Number(data[0].rows[0].count ?? '0');
     const numberOfCustomers = Number(data[1].rows[0].count ?? '0');
