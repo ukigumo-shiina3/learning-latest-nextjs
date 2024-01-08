@@ -5,7 +5,10 @@ import { useSearchParams, usePathname, useRouter } from 'next/navigation';
 import { useQueryState } from 'nuqs';
 
 export default function Search({ placeholder }: { placeholder: string }) {
-  const [query, setQuery] = useQueryState('query');
+  const [query, setQuery] = useQueryState('query', {
+    shallow: false, //URLの変更があればコンポーネントが再レンダリングされ、それに伴ってクエリパラメータが更新される
+    throttleMs: 1000, //1秒間間引かせることで検索フォームの文字入力のリクエスト回数を削減する
+  });
   // const searchParams = useSearchParams();
   // const pathname = usePathname();
   // const { replace } = useRouter();
@@ -33,7 +36,7 @@ export default function Search({ placeholder }: { placeholder: string }) {
         // onChange={(e) => {
         //   handleSearch(e.target.value);
         // }}
-        /* defaultValue={searchParams.get('query')?.toString()} */
+        // defaultValue={searchParams.get('query')?.toString()}
       />
       <MagnifyingGlassIcon className="absolute left-3 top-1/2 h-[18px] w-[18px] -translate-y-1/2 text-gray-500 peer-focus:text-gray-900" />
     </div>
