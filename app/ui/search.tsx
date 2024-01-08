@@ -9,6 +9,10 @@ export default function Search({ placeholder }: { placeholder: string }) {
     shallow: false, //URLの変更があればコンポーネントが再レンダリングされ、それに伴ってクエリパラメータが更新される
     throttleMs: 1000, //1秒間間引かせることで検索フォームの文字入力のリクエスト回数を削減する
   });
+  const [page, setPage] = useQueryState('query', {
+    shallow: false,
+    throttleMs: 1000,
+  });
   // const searchParams = useSearchParams();
   // const pathname = usePathname();
   // const { replace } = useRouter();
@@ -31,7 +35,10 @@ export default function Search({ placeholder }: { placeholder: string }) {
       <input
         className="peer block w-full rounded-md border border-gray-200 py-[9px] pl-10 text-sm outline-2 placeholder:text-gray-500"
         placeholder={placeholder}
-        onChange={(e) => setQuery(e.target.value)}
+        onChange={(e) => {
+          setPage('1');
+          setQuery(e.target.value);
+        }}
         value={query || ''}
         // onChange={(e) => {
         //   handleSearch(e.target.value);
