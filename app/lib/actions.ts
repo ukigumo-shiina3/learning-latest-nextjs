@@ -111,7 +111,9 @@ export async function authenticate(
   try {
     await signIn('credentials', formData);
   } catch (error) {
+    // errorは基本unknown型が入る
     if (error instanceof AuthError) {
+      //instanceof→何のエラーか特定する
       switch (error.type) {
         case 'CredentialsSignin':
           return 'Invalid credentials.';
