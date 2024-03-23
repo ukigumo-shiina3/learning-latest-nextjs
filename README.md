@@ -1,4 +1,4 @@
-# Next.jsのApp Routerを学ぶ
+# Next.jsのApp Routerを学習
 
 ## 概要
 
